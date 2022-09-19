@@ -1,14 +1,20 @@
 import express from 'express';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from './database/db';
 
 const app = express();
 app.use(express.json());
 
-const prisma = new PrismaClient();
+app.get('/users', async (req, res) => {
+  const users = await prisma.user.findMany({
+    select: {
+      name: true,
+      avatar: true,
+      country: true,
+    },
+  });
 
-app.get('/players', async (req, res) => {
-  return res.json();
+  return res.json(users);
 });
 
 const PORT = process.env.PORT || 3333;
-app.listen(PORT);
+app.listen(PORT, () => console.log(`Server running on PORT: ${PORT}`));
