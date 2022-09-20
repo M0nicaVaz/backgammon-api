@@ -65,5 +65,6 @@ app.delete('/users/:id', async (req, res) => {
   return res.status(200).json();
 });
 
-const PORT = process.env.PORT;
-app.listen(`0.0.0.0:${PORT}`, () => console.log(`Server running on ${PORT}`));
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Server Running');
+});
