@@ -10,8 +10,6 @@ app.use(cors());
 
 app.use('/files', express.static(multerConfig.UPLOADS_FOLDER));
 
-app.use('/', multerConfig.upload.single('avatar'));
-
 app.get('/users', async (req, res) => {
   const users = await prisma.user.findMany({
     select: {
@@ -25,9 +23,11 @@ app.get('/users', async (req, res) => {
   return res.json(users);
 });
 
-app.post('/users', async (req, res) => {
+app.post('/users', multerConfig.upload.single('avatar'), async (req, res) => {
   const body = req.body;
   const avatarFilename = req.file?.filename;
+
+  console.log(req);
 
   const userExists = await prisma.user.findFirst({
     where: {
@@ -43,7 +43,7 @@ app.post('/users', async (req, res) => {
   const diskStorage = new DiskStorage();
   const imageSaved = avatarFilename
     ? await diskStorage.saveFile(avatarFilename)
-    : '';
+    : 'placeholder.webp';
 
   const user = await prisma.user.create({
     data: {
