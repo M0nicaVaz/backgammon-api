@@ -43,7 +43,7 @@ app.post('/users', async (req, res) => {
   const diskStorage = new DiskStorage();
   const imageSaved = avatarFilename
     ? await diskStorage.saveFile(avatarFilename)
-    : 'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png';
+    : '';
 
   const user = await prisma.user.create({
     data: {
