@@ -8,6 +8,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use('/files', express.static(multerConfig.UPLOADS_FOLDER));
+
 app.use('/', multerConfig.upload.single('avatar'));
 
 app.get('/users', async (req, res) => {
