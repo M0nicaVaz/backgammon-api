@@ -64,4 +64,4 @@ app.delete('/users/:id', async (req, res) => {
 });
 
 const PORT = process.env.PORT;
-app.listen(PORT, () => console.log(`Server running`));
+app.listen(PORT, () => console.log(`Server running on ${PORT}`));
