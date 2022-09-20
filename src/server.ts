@@ -15,6 +15,7 @@ app.use('/', multerConfig.upload.single('avatar'));
 app.get('/users', async (req, res) => {
   const users = await prisma.user.findMany({
     select: {
+      id: true,
       name: true,
       avatar: true,
       country: true,
