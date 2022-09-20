@@ -21,6 +21,7 @@
   },
   "scripts": {
     "dev": "ts-node src/server.ts",
+    "build": "tsc",
     "commit": "cz"
   },
   "config": {
