@@ -2,9 +2,11 @@ import express from 'express';
 import { prisma } from './database/db';
 import multerConfig from './configs/upload';
 import DiskStorage from './providers/DiskStorage';
+import cors from 'cors';
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.use('/', multerConfig.upload.single('avatar'));
 
@@ -64,4 +66,4 @@ app.delete('/users/:id', async (req, res) => {
 });
 
 const PORT = process.env.PORT;
-app.listen(PORT, () => console.log(`Server running on ${PORT}`));
+app.listen(`0.0.0.0:${PORT}`, () => console.log(`Server running on ${PORT}`));
