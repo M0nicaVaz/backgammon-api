@@ -1,6 +1,6 @@
 import { promises } from 'fs';
-import path, { resolve } from 'path';
-import fs from 'fs';
+import * as path from 'path';
+import * as fs from 'fs';
 import uploadConfig from '../configs/upload';
 
 class DiskStorage {
@@ -13,7 +13,7 @@ class DiskStorage {
   }
 
   async deleteFile(file: string) {
-    const filePath = resolve(uploadConfig.UPLOADS_FOLDER, file);
+    const filePath = path.resolve(uploadConfig.UPLOADS_FOLDER, file);
 
     try {
       await promises.stat(filePath);
