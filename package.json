@@ -30,6 +30,7 @@
     "dev": "ts-node src/server.ts",
     "build": "tsc",
     "postinstall": "npm run build",
+    "generate": "npx prisma generate",
     "commit": "cz"
   },
   "config": {
